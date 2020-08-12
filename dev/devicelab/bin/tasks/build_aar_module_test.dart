@@ -41,7 +41,11 @@ Future<void> main() async {
       await inDirectory(tempDir, () async {
         await flutter(
           'create',
+<<<<<<< HEAD
           options: <String>['--org', 'io.flutter.devicelab', '--template', 'plugin', 'plugin_with_android'],
+=======
+          options: <String>['--org', 'io.flutter.devicelab', '--template', 'plugin', '--platforms=android', 'plugin_with_android'],
+>>>>>>> 2ae34518b87dd891355ed6c6ea8cb68c4d52bb9d
         );
       });
 
@@ -50,6 +54,7 @@ Future<void> main() async {
       await inDirectory(tempDir, () async {
         await flutter(
           'create',
+<<<<<<< HEAD
           options: <String>['--org', 'io.flutter.devicelab', '--template', 'plugin', 'plugin_without_android'],
         );
       });
@@ -69,6 +74,12 @@ Future<void> main() async {
         pluginClass: PluginWithoutAndroidPlugin
 ''', ''), flush: true);
 
+=======
+          options: <String>['--org', 'io.flutter.devicelab', '--template', 'plugin', '--platforms=ios', 'plugin_without_android'],
+        );
+      });
+
+>>>>>>> 2ae34518b87dd891355ed6c6ea8cb68c4d52bb9d
       section('Add plugins to pubspec.yaml');
 
       final File modulePubspec = File(path.join(projectDir.path, 'pubspec.yaml'));

@@ -110,7 +110,11 @@ void main() {
 
   testUsingContext('build aot outputs timing info', () async {
     globals.fs
+<<<<<<< HEAD
       .file('.dart_tool/flutter_build/0c21fd4ab3b8bde8b385ff01d08e0093/app.so')
+=======
+      .file('.dart_tool/flutter_build/3f206b606f73e08587a94405f2e86fad/app.so')
+>>>>>>> 2ae34518b87dd891355ed6c6ea8cb68c4d52bb9d
       .createSync(recursive: true);
     when(globals.buildSystem.build(any, any))
       .thenAnswer((Invocation invocation) async {
@@ -119,14 +123,14 @@ void main() {
             analyicsName: 'kernel_snapshot',
             target: 'kernel_snapshot',
             elapsedMilliseconds: 1000,
-            passed: true,
+            succeeded: true,
             skipped: false,
           ),
           'anything': PerformanceMeasurement(
             analyicsName: 'android_aot',
             target: 'anything',
             elapsedMilliseconds: 1000,
-            passed: true,
+            succeeded: true,
             skipped: false,
           ),
         });

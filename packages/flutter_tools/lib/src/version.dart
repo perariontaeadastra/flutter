@@ -749,7 +749,7 @@ class GitTagVersion {
       if (channel == 'dev' || channel == 'beta' || channel == 'stable') {
         globals.printTrace('Skipping request to fetchTags - on well known channel $channel.');
       } else {
-        _runGit('git fetch $_flutterGit --tags', processUtils, workingDirectory);
+        _runGit('git fetch $_flutterGit --tags -f', processUtils, workingDirectory);
       }
     }
     final List<String> tags = _runGit(
@@ -763,6 +763,20 @@ class GitTagVersion {
         return parse(trimmedTag);
       }
     }
+<<<<<<< HEAD
+    final List<String> tags = _runGit(
+      'git tag --contains HEAD', processUtils, workingDirectory).split('\n');
+
+    // Check first for a stable tag
+    final RegExp stableTagPattern = RegExp(r'^\d+\.\d+\.\d+$');
+    for (final String tag in tags) {
+      final String trimmedTag = tag.trim();
+      if (stableTagPattern.hasMatch(trimmedTag)) {
+        return parse(trimmedTag);
+      }
+    }
+=======
+>>>>>>> 2ae34518b87dd891355ed6c6ea8cb68c4d52bb9d
     // Next check for a dev tag
     final RegExp devTagPattern = RegExp(r'^\d+\.\d+\.\d+-\d+\.\d+\.pre$');
     for (final String tag in tags) {
@@ -776,7 +790,11 @@ class GitTagVersion {
     // recent tag and number of commits past.
     return parse(
       _runGit(
+<<<<<<< HEAD
         'git describe --match *.*.*-*.*.pre --first-parent --long --tags',
+=======
+        'git describe --match *.*.* --first-parent --long --tags',
+>>>>>>> 2ae34518b87dd891355ed6c6ea8cb68c4d52bb9d
         processUtils,
         workingDirectory,
       )
@@ -851,7 +869,11 @@ class GitTagVersion {
     if (devPatch != null && devVersion != null) {
       return '$x.$y.$z-${devVersion + 1}.0.pre.$commits';
     }
+<<<<<<< HEAD
     return '$x.$y.${z + 1}.pre.$commits';
+=======
+    return '$x.$y.${z + 1}-0.0.pre.$commits';
+>>>>>>> 2ae34518b87dd891355ed6c6ea8cb68c4d52bb9d
   }
 }
 
